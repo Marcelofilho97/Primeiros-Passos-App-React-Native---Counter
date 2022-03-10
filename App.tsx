@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View} from 'react-native';
+import { Counter } from './src/components/Counter';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello World!!!</Text>
+      <Text style={styles.TitleApp}> Bem Vindo ao Counter App</Text>
+      <Counter/>
       <StatusBar style="auto" />
     </View>
   );
@@ -17,4 +20,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  TitleApp: {
+    fontSize: 24,
+  }
 });

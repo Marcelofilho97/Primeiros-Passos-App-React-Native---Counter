@@ -17,7 +17,7 @@ export function Counter() {
             setMinute(minute + 1)
             setCoffeeCount(0)
             setWaterCount(0)
-        }, 86400000) //86400000 - 1 dia
+        }, 60000) //86400000 - 1 dia ; 60000 - 1 minuto
 
         return () => clearTimeout(timer)
 

@@ -10,66 +10,74 @@ export function Counter() {
 
     const [coffeeCount, setCoffeeCount] = useState(0)
     const [waterCount, setWaterCount] = useState(0)
-    //const [date, setDate] = useState(0)
-    //const [hour, setHour] = useState(0)
-    const [minute, setMinute] = useState(new Date().getMinutes())
-    //const [second, setSecond] = useState(0)
-    
+    const [minute, setMinute] = useState(new Date().getDate())
 
     useEffect(() => { 
-        //let currentHour = new Date().getHours(
-        //let currentSecond = new Date().getSeconds() 
-
        const timer =  setTimeout(() => {
             setMinute(minute + 1)
             setCoffeeCount(0)
             setWaterCount(0)
-        }, 60000)
+        }, 86400000) //86400000 - 1 dia
 
         return () => clearTimeout(timer)
 
     }, [minute])
 
     return(
-        <View>
+        <View style = {styles.Container}>
             <Text> { minute } </Text>
-            <TouchableOpacity onPress={() => {
-                setCoffeeCount(coffeeCount + 1)
-            }}>
-                <Image style = {styles.coffeImages}
-                source={
-                    require('../../assets/img/coffee.png')
-                }
-                />
-            </TouchableOpacity>
-            <Text style= {styles.coffeText}> Número de Xícaras de Café Durante o Dia </Text>
-            
-            <Text style= {styles.coffeCount}>{coffeeCount}</Text>
-            
 
-            <TouchableOpacity onPress={() => {
-                setWaterCount(waterCount + 1)
-            }}>
-                <Image style= {styles.waterImage}
-                source={
-                    require('../../assets/img/water.png')
-                }
-                />
-            </TouchableOpacity>
-            <Text style={styles.waterText}> Número de Copos de Água Durante o Dia </Text>
-            <Text style={styles.waterCount}>{waterCount}</Text>
+            <div>
+                <TouchableOpacity onPress={() => {
+                    setCoffeeCount(coffeeCount + 1)
+                }}>
+                    <Image style = {styles.coffeImages}
+                    source={
+                        require('../../assets/img/coffee.png')
+                    }
+                    />
+                </TouchableOpacity>
+                <br />
+                <Text style= {styles.coffeText}> Número de Xícaras de Café Durante o Dia </Text>
+                <br />
+                <Text style= {styles.coffeCount}>{coffeeCount}</Text>
+            </div>
+            
+            <div>
+                <TouchableOpacity onPress={() => {
+                    setWaterCount(waterCount + 1)
+                }}>
+                    <Image style= {styles.waterImage}
+                    source={
+                        require('../../assets/img/water.png')
+                    }
+                    />
+                </TouchableOpacity>
+                <br />
+                <Text style={styles.waterText}> Número de Copos de Água Durante o Dia </Text>
+                <br />
+                <Text style={styles.waterCount}>{waterCount}</Text>
+            </div>            
         </View>
     )
 }
 
 
 const styles = StyleSheet.create({
+    Container: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    div: {
+        alignItems: 'center'
+    },
     coffeImages: {
         width: 180,
         height: 180,
-        alignSelf: 'center',
         backgroundColor: '#E6BAA1',
         padding: 45,
+        alignSelf: 'center',
 
         marginTop: 30,
         marginBottom: 12,
@@ -79,30 +87,28 @@ const styles = StyleSheet.create({
     waterImage: {
         width: 180,
         height: 180,
-        alignSelf: 'center',
         backgroundColor: '#AEE4E6',
         padding: 45,
+        alignSelf: 'center',
 
         marginTop: 30,
         marginBottom: 12,
         borderRadius: 20
     },
     coffeText: {
-        fontSize: 18,
-        alignSelf: 'center',
+        fontSize: 15,
+    
     },
     waterText: {
-        fontSize: 18,
-        alignSelf: 'center',
+        fontSize: 15,
     },
     coffeCount: {
         fontSize: 50,
-        alignSelf: 'center',
-
+        
     },
     waterCount: {
         fontSize: 50,
-        alignSelf: 'center',
+    
     }
 })
 
